@@ -1,0 +1,31 @@
+{
+  "name": "get_tour_back",
+  "version": "0.0.1",
+  "description": "get tour backend",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js --ext js,jsx",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyshevchenko/get_tour_back.git"
+  },
+  "author": "shevchenko kirill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyshevchenko/get_tour_back/issues"
+  },
+  "homepage": "https://github.com/kyshevchenko/get_tour_back#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "gitignore": "^0.7.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "globals": "^15.14.0",
+    "nodemon": "^3.1.9"
+  }
+}
