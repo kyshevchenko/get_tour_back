@@ -19,6 +19,12 @@ module.exports = {
           isActive: true,
         },
         {
+          name: 'Китай',
+          keywords: 'китай, китае, хайнань',
+          isCustom: false,
+          isActive: true,
+        },
+        {
           name: 'Шри-Ланка',
           keywords: 'шри-ланк, коломбо',
           isCustom: false,
