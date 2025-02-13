@@ -2,7 +2,44 @@ const router = require("express").Router();
 const { Op } = require("sequelize");
 const { ChatSubscriptions, Subscription, User } = require("../../db/models");
 
-// Получить список своих подписок
+// Получить список всех подписчиков с активными подписками
+router.get("/all", async (req, res) => {
+  try {
+    const subsData = await ChatSubscriptions.findAll({
+      include: [
+        {
+          model: Subscription,
+          attributes: ["name", "keywords"], // Указываем, какие поля нужно включить
+        },
+      ],
+    });
+    if (!subsData) {
+      res.json({ message: "На бота еще никто не подписан." });
+      return;
+    }
+    const subsClearData = subsData.map((e) => e.get({ plain: true }));
+    let subscriptions = {};
+    for (const sub in subsClearData) {
+      const { chatId, subscriptionId, Subscription } = subsClearData[sub];
+      const { name, keywords } = Subscription;
+
+      subscriptions[name] = subscriptions[name] || { chats: [], keywords, subscriptionId };
+      subscriptions[name].chats.push(chatId);
+    }
+
+    res.json({
+      message: `Список активных подписок успешно получен.`,
+      subscriptions,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error:
+        "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.",
+    });
+  }
+});
+
+// Получить список своих активных подписок
 router.get("/my/:telegramId", async (req, res) => {
   const telegramId = Number(req.params.telegramId);
 
@@ -20,7 +57,6 @@ router.get("/my/:telegramId", async (req, res) => {
       return;
     }
     const subsIds = subsData.map((e) => e.get({ plain: true }).subscriptionId);
-    console.log("subsIds -->", subsIds);
 
     const subsNamesData = await Subscription.findAll({
       where: {
@@ -30,10 +66,10 @@ router.get("/my/:telegramId", async (req, res) => {
       },
     });
     const subNames = subsNamesData.map((e) => e.name);
+    const message = subNames.length ? `Список активных подписок: ${subNames.join(", ")}.` : "У вас нет активных подписок."
 
-    res.json({ message: `Список активных подписок: ${subNames.join(", ")}.` });
+    res.json({ message });
   } catch (error) {
-    console.log("error --->", error);
     res.status(500).json({
       error:
         "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.",
@@ -43,7 +79,8 @@ router.get("/my/:telegramId", async (req, res) => {
 
 // Создание новой подписки
 router.post("/new", async (req, res) => {
-  const { telegramTag, telegramId, name, chatId, subName, subscriptionId } = req.body;
+  const { telegramTag, telegramId, name, chatId, subName, subscriptionId } =
+    req.body;
 
   try {
     // Проверяем есть ли пользователь в БД и создаем его
@@ -55,7 +92,7 @@ router.post("/new", async (req, res) => {
         telegramTag,
         telegramId,
         name,
-        isActive: true,  // TODO сделать в миграциях значением по умолчанию
+        isActive: true,
       });
       ownerId = user.dataValues.id;
     }
@@ -81,7 +118,7 @@ router.post("/new", async (req, res) => {
         chatId,
         subscriptionId,
         isChatBased,
-        isActive: true, // TODO сделать в миграциях значением по умолчанию
+        isActive: true,
       });
 
       res.json({
@@ -115,12 +152,13 @@ router.delete("/delete", async (req, res) => {
       },
     });
 
-    const message = deleteResult > 0
-      ? "Подписка была удалена."
-      : "Подписка не является активной.\nЕсли вам приходят уведомления, проверьте список активных подписко с помощью компанды:\n/list";
+    const message =
+      deleteResult > 0
+        ? "Подписка была удалена."
+        : "Подписка не является активной.\nЕсли вам приходят уведомления, проверьте список активных подписко с помощью компанды:\n/list";
     res.json({ message });
   } catch (error) {
-    console.log("error --->", error); // TODO сохранять логи ошибок с датой и временем
+    console.log("error --->", error);
     res.status(500).json({
       error:
         "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.", // TODO текст вынести в константы

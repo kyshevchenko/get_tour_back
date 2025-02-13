@@ -12,6 +12,13 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      subscriptionGroupId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'SubscriptionGroups',
+          key: 'id',
+        },
+      },
       keywords: {
         type: Sequelize.TEXT
       },

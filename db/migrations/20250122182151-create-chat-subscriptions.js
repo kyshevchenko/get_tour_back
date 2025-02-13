@@ -20,7 +20,7 @@ module.exports = {
         },
       },
       chatId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       subscriptionId: {
         type: Sequelize.INTEGER,

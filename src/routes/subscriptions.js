@@ -1,23 +1,42 @@
 const router = require("express").Router();
-const { Subscription } = require("../../db/models");
+const { Subscription, SubscriptionGroups } = require("../../db/models");
 
 router.get("/all", async (req, res) => {
-  const isCustom = false;
   try {
-    const subsData = await Subscription.findAll({ where: { isCustom } });
+    const subsData = await Subscription.findAll({
+      include: [
+        {
+          model: SubscriptionGroups,
+          required: true,
+          attributes: ["name"],
+        },
+      ],
+    });
     const result = subsData.map((sub) => sub.get({ plain: true }));
 
-    let subs = [];
-    let subIds = {};
-    for (const sub in result) {
-      subs.push(result[sub].name);
+    let subInfo = {};
+    for (const r of result) {
+      const {
+        name: subName,
+        id,
+        keywords,
+        SubscriptionGroup: { name: groupName },
+      } = r;
 
-      subIds[result[sub].name] = result[sub].id;
+      if (!subInfo[groupName]) subInfo[groupName] = {};
+
+      subInfo[groupName][subName] = {
+        id,
+        keywords,
+      };
     }
 
-    res.json({ subs, subIds });
+    res.json(subInfo);
   } catch (error) {
-    res.status(500).json({ error: "Something went wrong" });
+    res.status(500).json({
+      error:
+        "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.",
+    });
   }
 });
 

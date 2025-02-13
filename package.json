@@ -4,7 +4,7 @@
   "description": "get tour backend",
   "main": "src/get-tour-app.js",
   "scripts": {
-    "start": "nodemon src/get-tour-app.js --ext js,jsx",
+    "start": "nodemon src/get-tour-back.js --ext js,jsx",
     "test": "npm test"
   },
   "repository": {
