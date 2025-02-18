@@ -1,6 +1,6 @@
 {
   "name": "get_tour_back",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "get tour backend",
   "main": "src/get-tour-app.js",
   "scripts": {

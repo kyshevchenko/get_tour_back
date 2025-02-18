@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const { Op } = require("sequelize");
 const { ChatSubscriptions, Subscription, User } = require("../../db/models");
+const {
+  hasNoSubsMsg,
+  somethingWrongMsg,
+} = require("../constants/messages.js");
 
 // Получить список всех подписчиков с активными подписками
 router.get("/all", async (req, res) => {
@@ -9,7 +13,7 @@ router.get("/all", async (req, res) => {
       include: [
         {
           model: Subscription,
-          attributes: ["name", "keywords"], // Указываем, какие поля нужно включить
+          attributes: ["name", "keywords"],
         },
       ],
     });
@@ -19,11 +23,16 @@ router.get("/all", async (req, res) => {
     }
     const subsClearData = subsData.map((e) => e.get({ plain: true }));
     let subscriptions = {};
-    for (const sub in subsClearData) {
-      const { chatId, subscriptionId, Subscription } = subsClearData[sub];
+    for (const sub of subsClearData) {
+      const { chatId, subscriptionId, Subscription } = sub;
       const { name, keywords } = Subscription;
 
-      subscriptions[name] = subscriptions[name] || { chats: [], keywords, subscriptionId };
+      subscriptions[name] = subscriptions[name] || {
+        chats: [],
+        keywords,
+        subscriptionId,
+      };
+
       subscriptions[name].chats.push(chatId);
     }
 
@@ -33,8 +42,7 @@ router.get("/all", async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      error:
-        "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.",
+      error: somethingWrongMsg,
     });
   }
 });
@@ -46,14 +54,14 @@ router.get("/my/:telegramId", async (req, res) => {
   try {
     const user = await User.findOne({ where: { telegramId } });
     if (!user) {
-      res.json({ message: "У вас нет ни одной активной подписки." });
+      res.json({ message: hasNoSubsMsg });
       return;
     }
     const ownerId = user?.dataValues?.id;
 
     const subsData = await ChatSubscriptions.findAll({ where: { ownerId } });
     if (!subsData) {
-      res.json({ message: "У вас нет ни одной активной подписки." });
+      res.json({ message: hasNoSubsMsg });
       return;
     }
     const subsIds = subsData.map((e) => e.get({ plain: true }).subscriptionId);
@@ -66,13 +74,14 @@ router.get("/my/:telegramId", async (req, res) => {
       },
     });
     const subNames = subsNamesData.map((e) => e.name);
-    const message = subNames.length ? `Список активных подписок: ${subNames.join(", ")}.` : "У вас нет активных подписок."
+    const message = subNames.length
+      ? `Список активных подписок: ${subNames.join(", ")}.`
+      : hasNoSubsMsg;
 
     res.json({ message });
   } catch (error) {
     res.status(500).json({
-      error:
-        "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.",
+      error: somethingWrongMsg,
     });
   }
 });
@@ -122,14 +131,13 @@ router.post("/new", async (req, res) => {
       });
 
       res.json({
-        message: `Вы успешно подписались на уведомления по подписке "${subName}"`,
+        message: `Вы успешно подписались на уведомления по подписке "${subName}. Настройки бота обновятся в течение часа.`,
       });
     }
   } catch (error) {
     console.log("error --->", error);
     res.status(500).json({
-      error:
-        "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.",
+      error: somethingWrongMsg,
     });
   }
 });
@@ -140,7 +148,7 @@ router.delete("/delete", async (req, res) => {
   try {
     const user = await User.findOne({ where: { telegramId } });
     if (!user) {
-      res.json({ message: "У вас нет ни одной активной подписки." });
+      res.json({ message: hasNoSubsMsg });
       return;
     }
     const ownerId = user?.dataValues?.id;
@@ -154,14 +162,53 @@ router.delete("/delete", async (req, res) => {
 
     const message =
       deleteResult > 0
-        ? "Подписка была удалена."
-        : "Подписка не является активной.\nЕсли вам приходят уведомления, проверьте список активных подписко с помощью компанды:\n/list";
+        ? "Подписка была удалена.\nНастройки бота обновятся в течение часа."
+        : "Подписка не является активной.";
     res.json({ message });
   } catch (error) {
     console.log("error --->", error);
     res.status(500).json({
-      error:
-        "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.", // TODO текст вынести в константы
+      error: somethingWrongMsg,
+    });
+  }
+});
+
+// Удаление ВСЕХ подписок подписчика и его аккаунта
+router.delete("/deleteall", async (req, res) => {
+  const { telegramId } = req.body;
+  try {
+    const user = await User.findOne({ where: { telegramId } });
+
+    if (!user) {
+      res.json({ message: hasNoSubsMsg });
+      return;
+    }
+
+    const ownerId = user?.dataValues?.id;
+    const { id } = user?.dataValues;
+
+    const deleteResult = await ChatSubscriptions.destroy({
+      where: {
+        ownerId,
+      },
+    });
+
+    await User.destroy({
+      where: {
+        id,
+      },
+    });
+
+    const message =
+      deleteResult > 0
+        ? "Вы успешно отписались от всех рассылок.\nНастройки бота обновятся в течение часа."
+        : hasNoSubsMsg;
+
+    res.json({ message });
+  } catch (error) {
+    console.log("error --->", error);
+    res.status(500).json({
+      error: somethingWrongMsg,
     });
   }
 });

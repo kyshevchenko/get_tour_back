@@ -8,7 +8,8 @@ module.exports = {
       [
         {
           name: "Турция",
-          keywords: "турци, турецки, стамбул, аланья, аланью, анталья, анталью, кемер, мармарис",
+          keywords:
+            "турци, турецки, стамбул, аланья, аланью, анталья, анталью, кемер, мармарис, белек",
           subscriptionGroupId: 2,
           isCustom: false,
           isActive: true,
@@ -22,14 +23,15 @@ module.exports = {
         },
         {
           name: "Китай",
-          keywords: "китай, китае, хайнань",
+          keywords:
+            "китай, китае, хайнань, шанхай, гонконг, гуанчжоу, пекин, санья",
           subscriptionGroupId: 1,
           isCustom: false,
           isActive: true,
         },
         {
           name: "Шри-Ланка",
-          keywords: "шри-ланк, коломбо",
+          keywords: "шри-ланк, коломбо, маттала, хамбантота",
           subscriptionGroupId: 1,
           isCustom: false,
           isActive: true,
@@ -37,21 +39,21 @@ module.exports = {
         {
           name: "Япония",
           keywords:
-            "япони, токио, сибуя, осака, осаке, осаку, киото, хиросима, нагоя, сакура",
+            "япони, токио, сибуя, осака, осаке, осаку, киото, хиросима, нагоя, сакура, фукуока",
           subscriptionGroupId: 1,
           isCustom: false,
           isActive: true,
         },
         {
           name: "ОАЭ",
-          keywords: "оаэ, дубай, дубае, эмират, шарджа, шардже",
+          keywords: "оаэ, дубай, дубае, эмират, шардж",
           subscriptionGroupId: 2,
           isCustom: false,
           isActive: true,
         },
         {
           name: "Египет",
-          keywords: "египет, египте, хургада, каир, шарм-эль-шейх",
+          keywords: "египет, египт, хургад, каир, шарм-",
           subscriptionGroupId: 2,
           isCustom: false,
           isActive: true,
@@ -96,7 +98,7 @@ module.exports = {
           name: "Сочи",
           keywords:
             "сочи, роза-хутор, адлер, красная поляна, красную поляну, красной поляне",
-            subscriptionGroupId: 3,
+          subscriptionGroupId: 3,
           isCustom: false,
           isActive: true,
         },
@@ -109,7 +111,8 @@ module.exports = {
         },
         {
           name: "Казахстан",
-          keywords: "казахстан, казахск, алматы, астана",
+          keywords:
+            "казахстан, казахск, алматы, астана, караганда, шымкент, усть-каменогорск, уральск",
           subscriptionGroupId: 3,
           isCustom: false,
           isActive: true,
@@ -130,7 +133,7 @@ module.exports = {
         },
         {
           name: "Армения",
-          keywords: "армения, армянск",
+          keywords: "армения, армянск, ереван",
           subscriptionGroupId: 3,
           isCustom: false,
           isActive: true,
@@ -158,25 +161,22 @@ module.exports = {
         },
         {
           name: "Танзания",
-          keywords:
-            "Танзания",
-            subscriptionGroupId: 4,
+          keywords: "танзания",
+          subscriptionGroupId: 4,
           isCustom: false,
           isActive: true,
         },
         {
           name: "Маврикий",
-          keywords:
-            "маврикий",
-            subscriptionGroupId: 4,
+          keywords: "маврикий",
+          subscriptionGroupId: 4,
           isCustom: false,
           isActive: true,
         },
         {
           name: "Занзибар",
-          keywords:
-            "занзибар",
-            subscriptionGroupId: 4,
+          keywords: "занзибар",
+          subscriptionGroupId: 4,
           isCustom: false,
           isActive: true,
         },
@@ -184,7 +184,7 @@ module.exports = {
           name: "Новый год",
           keywords:
             "новый год, нового года, новогод, новым годом, захватом нового, захватом НГ",
-            subscriptionGroupId: 5,
+          subscriptionGroupId: 5,
           isCustom: false,
           isActive: true,
         },
@@ -192,6 +192,120 @@ module.exports = {
           name: "Майские праздники",
           keywords: "майские, захватом майских",
           subscriptionGroupId: 5,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Германия",
+          keywords:
+            "германи, берлин, мюнхен, гамбург, франкфурт, штутгарт, кёльн",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Греция",
+          keywords: "греци, афины, крит, родос, корфу, салоники",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Испания",
+          keywords: "испани, мадрид, барселон, валенси, севиль, марбель",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Италия",
+          keywords:
+            "итали, рим, милан, венеци, флоренци, неапол, турин, сицили",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Польша",
+          keywords: "польш, варшав, краков",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Франция",
+          keywords: "франци, париж, марсел, ницц",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Хорватия",
+          keywords: "хорвати, загреб, дубровник",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Черногория",
+          keywords: "черногори, подгориц, будв, котор, герцег-нов, тиват",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Чехия",
+          keywords: "чехия, чехию, чехии, прага, прагу, праге",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Швеция",
+          keywords: "швеци, стокгольм, гётеборг, мальм",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Нидерланды",
+          keywords: "нидерланд, амстердам, роттердам, гааг",
+          subscriptionGroupId: 6,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Бразилия",
+          keywords: "бразили, бразильск, рио-де-жанейро, сан-паулу",
+          subscriptionGroupId: 4,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Аргентина",
+          keywords: "аргентин, буэнос-айрес, мендоса",
+          subscriptionGroupId: 4,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Мексика",
+          keywords: "мексик, мексиканск, мехико, канкун",
+          subscriptionGroupId: 4,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Чили",
+          keywords: "чили, чилийск, сантьяго",
+          subscriptionGroupId: 4,
+          isCustom: false,
+          isActive: true,
+        },
+        {
+          name: "Колумбия",
+          keywords: "колумби, колумбийск, богот, картахен",
+          subscriptionGroupId: 4,
           isCustom: false,
           isActive: true,
         },

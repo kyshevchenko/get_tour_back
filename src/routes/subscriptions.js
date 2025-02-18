@@ -1,3 +1,5 @@
+const { somethingWrongMessage } = require("../constants/messages.js");
+
 const router = require("express").Router();
 const { Subscription, SubscriptionGroups } = require("../../db/models");
 
@@ -34,8 +36,7 @@ router.get("/all", async (req, res) => {
     res.json(subInfo);
   } catch (error) {
     res.status(500).json({
-      error:
-        "Что-то пошло не так... Попробуйте позже или обратитесь к разработчику.",
+      error: somethingWrongMessage,
     });
   }
 });

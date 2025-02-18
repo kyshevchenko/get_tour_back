@@ -10,7 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT;
 
-// app.use('/users', require('./routes/users'));
 app.use('/subscriptions', require('./routes/subscriptions'));
 app.use('/chat-subscriptions', require('./routes/chat-subscriptions'));
 
