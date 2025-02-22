@@ -2,9 +2,9 @@
   "name": "get_tour_back",
   "version": "1.0.1",
   "description": "get tour backend",
-  "main": "src/get-tour-app.js",
+  "main": "get-tour-app.js",
   "scripts": {
-    "start": "nodemon src/get-tour-back.js --ext js,jsx",
+    "start": "nodemon get-tour-back.js --ext js,jsx",
     "test": "npm test"
   },
   "repository": {
