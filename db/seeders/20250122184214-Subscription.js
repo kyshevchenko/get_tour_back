@@ -16,7 +16,7 @@ module.exports = {
         },
         {
           name: "Индия",
-          keywords: "гоа, индия, индию, индии, индий, дели",
+          keywords: "гоа, индия, индию, индии, индий, дели, даболим",
           subscriptionGroupId: 1,
           isCustom: false,
           isActive: true,
@@ -39,7 +39,7 @@ module.exports = {
         {
           name: "Япония",
           keywords:
-            "япони, токио, сибуя, осака, осаке, осаку, киото, хиросима, нагоя, сакура, фукуока",
+            "япони, токио, сибуя, сибуе, осака, осаке, осаку, киото, хиросим, нагоя, сакур, фукуока",
           subscriptionGroupId: 1,
           isCustom: false,
           isActive: true,
@@ -97,14 +97,14 @@ module.exports = {
         {
           name: "Сочи",
           keywords:
-            "сочи, роза-хутор, адлер, красная поляна, красную поляну, красной поляне",
+            "сочи, роза-хутор, адлер, красная поляна, красную поляну, красной поляне, красной поляны",
           subscriptionGroupId: 3,
           isCustom: false,
           isActive: true,
         },
         {
           name: "Шерегеш",
-          keywords: "шерегеш",
+          keywords: "шерегеш, новокузнецк",
           subscriptionGroupId: 3,
           isCustom: false,
           isActive: true,
