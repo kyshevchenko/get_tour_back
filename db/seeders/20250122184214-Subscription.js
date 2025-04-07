@@ -9,7 +9,7 @@ module.exports = {
         {
           name: "Турция",
           keywords:
-            "турци, турецки, стамбул, аланья, аланью, анталья, анталью, кемер, мармарис, белек",
+            "турци, турецки, стамбул, алань, анталь, кемер, мармарис, белек, даламан",
           subscriptionGroupId: 2,
           isCustom: false,
           isActive: true,
@@ -46,7 +46,7 @@ module.exports = {
         },
         {
           name: "ОАЭ",
-          keywords: "оаэ, дубай, дубае, эмират, шардж",
+          keywords: "оаэ, дубай, дубае, эмират, шардж, абу-",
           subscriptionGroupId: 2,
           isCustom: false,
           isActive: true,
@@ -154,7 +154,7 @@ module.exports = {
         },
         {
           name: "Грузия",
-          keywords: "грузия, грузию, грузинск, тбилиси, батуми",
+          keywords: "грузия, грузию, грузинск, тбилиси, батуми, кутаиси",
           subscriptionGroupId: 3,
           isCustom: false,
           isActive: true,
@@ -248,7 +248,7 @@ module.exports = {
         },
         {
           name: "Черногория",
-          keywords: "черногори, подгориц, будв, котор, герцег-нов, тиват",
+          keywords: "черногори, подгориц, будв, герцег-нови, тиват",
           subscriptionGroupId: 6,
           isCustom: false,
           isActive: true,
