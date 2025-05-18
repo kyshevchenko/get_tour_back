@@ -160,6 +160,13 @@ module.exports = {
           isActive: true,
         },
         {
+          name: "Калинград",
+          keywords: "калининград",
+          subscriptionGroupId: 3,
+          isCustom: false,
+          isActive: true,
+        },
+        {
           name: "Танзания",
           keywords: "танзания",
           subscriptionGroupId: 4,
