@@ -5,9 +5,9 @@ const { Privat } = require("../../db/models/index.js");
 
 router.get("/", async (req, res) => {
   try {
-    const prevateData = await Privat.findAll();
+    const privateData = await Privat.findAll();
 
-    res.json(prevateData);
+    res.json(privateData);
   } catch (error) {
     res.status(500).json({
       error: somethingWrongMessage,
