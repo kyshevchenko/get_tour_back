@@ -1,10 +1,10 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Private extends Model {
+  class Privat extends Model {
     static associate(models) {}
   }
-  Private.init(
+  Privat.init(
     {
       channelId: DataTypes.BIGINT,
       keywords: DataTypes.STRING,
@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Private",
+      modelName: "Privat",
     }
   );
-  return Private;
+  return Privat;
 };
