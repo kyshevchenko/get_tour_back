@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 app.use("/subscriptions", require("./src/routes/subscriptions"));
 app.use("/chat-subscriptions", require("./src/routes/chat-subscriptions"));
-app.use("/private", require("./src/routes/privat"));
+app.use("/private", require("./src/routes/private"));
 
 app.listen(PORT, () => {
   console.log(`server is runnig in PORT: ${PORT}`);

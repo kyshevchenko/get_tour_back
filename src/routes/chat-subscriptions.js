@@ -1,10 +1,7 @@
 const router = require("express").Router();
 const { Op } = require("sequelize");
 const { ChatSubscriptions, Subscription, User } = require("../../db/models");
-const {
-  hasNoSubsMsg,
-  somethingWrongMsg,
-} = require("../constants/messages.js");
+const { hasNoSubsMsg, somethingWrongMsg } = require("../constants/messages.js");
 
 // Получить список всех подписчиков с активными подписками
 router.get("/all", async (req, res) => {
@@ -18,8 +15,7 @@ router.get("/all", async (req, res) => {
       ],
     });
     if (!subsData) {
-      res.json({ message: "На бота еще никто не подписан." });
-      return;
+      return res.json({ message: "На бота еще никто не подписан." });
     }
     const subsClearData = subsData.map((e) => e.get({ plain: true }));
     let subscriptions = {};
