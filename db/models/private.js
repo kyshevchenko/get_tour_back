@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       channelId: DataTypes.BIGINT,
       keywords: DataTypes.STRING,
       recipients: DataTypes.STRING,
+      description: DataTypes.STRING,
     },
     {
       sequelize,
