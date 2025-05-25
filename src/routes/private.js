@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     const privateData = await Privat.findAll();
 
     const privateResult = privateData.reduce((result, item) => {
-      const pureId = BigInt(String(item.channelId).replace(/^-100/, ""));
+      const pureId = BigInt(String(item.channelId).replace(/^(-100|^-)/, ""));
 
       // console.log("item.channelId): ", item.channelId); TODO: remove, used for debug
       // console.log("ipureId: ", pureId);
@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
       result[pureId] = {
         keywords: item.keywords.split(", "),
         recipients: item.recipients.split(", ").map(Number),
+        description: item.description,
       };
       return result;
     }, {});
