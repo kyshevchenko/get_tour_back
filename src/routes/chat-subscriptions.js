@@ -158,7 +158,7 @@ router.delete("/delete", async (req, res) => {
 
     const message =
       deleteResult > 0
-        ? "Подписка была удалена.\nНастройки бота скоро обовятся."
+        ? "Подписка была удалена.\nНастройки бота скоро обновятся."
         : "Подписка не является активной.";
     res.json({ message });
   } catch (error) {
